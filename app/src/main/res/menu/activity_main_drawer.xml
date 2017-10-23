@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_filelist"
+            android:icon="@drawable/tdzf"
+            android:title="图斑文件" />
+        <item
+            android:id="@+id/nav_tblist"
+            android:icon="@drawable/tdzf_tblist"
+            android:title="图斑列表" />
+        <item
+            android:id="@+id/nav_tbdetail"
+            android:icon="@drawable/tdzf_tbdetail"
+            android:title="图斑详情" />
+        <item
+            android:id="@+id/nav_pw"
+            android:icon="@drawable/pw"
+            android:title="密码修改" />
+    </group>
+</menu>

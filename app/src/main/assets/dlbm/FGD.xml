@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <dlbm name="园地" code="0200">
+    </dlbm>
+    <dlbm name="林地" code="0300">
+    </dlbm>
+    <dlbm name="草地" code="0400">
+    </dlbm>
+    <dlbm name="房屋建筑区" code="0500">
+    </dlbm>
+    <dlbm name="道路" code="0600">
+        <dlbm name="铁路" code="0610" />
+        <dlbm name="公路" code="0620" />
+        <dlbm name="城市道路" code="0630" />
+        <dlbm name="乡村道路" code="0640" />
+    </dlbm>
+    <dlbm name="构筑物" code="0700">
+        <dlbm name="硬化地表" code="0710"/>
+        <dlbm name="水工设施" code="0720"/>
+        <dlbm name="交通设施" code="0730"/>
+        <dlbm name="城墙" code="0740"/>
+        <dlbm name="温室、大棚" code="0750"/>
+        <dlbm name="固化池" code="0760"/>
+        <dlbm name="工业设施" code="0770"/>
+        <dlbm name="其他构筑物" code="0790"/>
+    </dlbm>
+    <dlbm name="人工堆掘地" code="0800">
+        <dlbm name="露天采掘场" code="0810"/>
+        <dlbm name="堆放物" code="0820"/>
+        <dlbm name="建筑工地" code="0830"/>
+        <dlbm name="其他人工堆掘地" code="0890"/>
+    </dlbm>
+    <dlbm name="荒漠和裸露地表" code="0900">
+    </dlbm>
+    <dlbm name="水域" code="1000">
+        <dlbm name="河渠" code="1010"/>
+        <dlbm name="湖泊" code="1020"/>
+        <dlbm name="库塘" code="1030"/>
+    </dlbm>
+</root>

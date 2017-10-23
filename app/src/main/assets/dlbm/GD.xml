@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <dlbm name="耕地" code="0100">
+        <dlbm name="水田" code="0110" />
+        <dlbm name="旱地" code="0120" />
+    </dlbm>
+</root>

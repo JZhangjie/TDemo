@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.xinxizhan.test.tdemo.controls.popup.DLBMTreeFragment">
+    <ListView
+        android:id="@+id/dlbm_tree_level_1"
+        android:layout_width="140dp"
+        android:layout_height="match_parent">
+    </ListView>
+    <ListView
+        android:id="@+id/dlbm_tree_level_2"
+        android:layout_marginLeft="140dp"
+        android:layout_width="140dp"
+        android:layout_height="match_parent">
+    </ListView>
+</FrameLayout>

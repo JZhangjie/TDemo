@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <dlbm name="耕地" code="0100">
+        <dlbm name="水田" code="0110" />
+        <dlbm name="旱地" code="0120" />
+    </dlbm>
+    <dlbm name="园地" code="0200">
+        <dlbm name="果园" code="0210">
+            <dlbm name="乔灌果园" code="0211" />
+            <dlbm name="藤本果园" code="0212" />
+            <dlbm name="草本果园" code="0213" />
+        </dlbm>
+        <dlbm name="茶园" code="0220" />
+        <dlbm name="桑园" code="0230" />
+        <dlbm name="橡胶园" code="0240" />
+        <dlbm name="苗圃" code="0250" />
+        <dlbm name="花圃" code="0260" />
+        <dlbm name="其他园地" code="0290">
+            <dlbm name="其他乔灌园地" code="0291" />
+            <dlbm name="其他藤本园地" code="0292" />
+            <dlbm name="其他草本园地" code="0293" />
+        </dlbm>
+    </dlbm>
+    <dlbm name="林地" code="0300">
+        <dlbm name="乔木林" code="0310">
+            <dlbm name="阔叶林" code="0311" />
+            <dlbm name="针叶林" code="0312" />
+            <dlbm name="针阔混交林" code="0313" />
+        </dlbm>
+        <dlbm name="灌木林" code="0320">
+            <dlbm name="阔叶灌木林" code="0321" />
+            <dlbm name="针叶灌木林" code="0322" />
+            <dlbm name="针阔混交灌木林" code="0323" />
+        </dlbm>
+        <dlbm name="乔灌混合林" code="0330" />
+        <dlbm name="竹林" code="0340" />
+        <dlbm name="疏林" code="0350" />
+        <dlbm name="绿化林地" code="0360" />
+        <dlbm name="人工幼林" code="0370" />
+        <dlbm name="稀疏灌丛" code="0380" />
+    </dlbm>
+    <dlbm name="草地" code="0400">
+        <dlbm name="天然草地" code="0410">
+            <dlbm name="高覆盖度草地" code="0411" />
+            <dlbm name="中覆盖度草地" code="0412" />
+            <dlbm name="低覆盖度草地" code="0413" />
+        </dlbm>
+        <dlbm name="人工草地" code="0420">
+            <dlbm name="牧草地" code="0421" />
+            <dlbm name="绿化草地" code="0422" />
+            <dlbm name="固沙灌草" code="0423" />
+            <dlbm name="护坡灌草" code="0424" />
+            <dlbm name="其他人工草地" code="0429" />
+        </dlbm>
+    </dlbm>
+    <dlbm name="房屋建筑（区）" code="0500">
+        <dlbm name="多屋及以上房屋建筑区" code="0510">
+            <dlbm name="高密度多层及以上房屋建筑区" code="0511" />
+            <dlbm name="低密度多层及以上房屋建筑区" code="0512" />
+        </dlbm>
+        <dlbm name="低矮房屋建筑区" code="0520">
+            <dlbm name="高密度低矮房屋建筑区" code="0521" />
+            <dlbm name="低密度低矮房屋建筑区" code="0522" />
+        </dlbm>
+        <dlbm name="废弃房屋建筑区" code="0530" />
+        <dlbm name="多层及以上独立房屋建筑" code="0540">
+            <dlbm name="多层独立房屋建筑" code="0541" />
+            <dlbm name="中高层独立房屋建筑" code="0542" />
+            <dlbm name="高层独立房屋建筑" code="0543" />
+            <dlbm name="超高层独立房屋建筑" code="0544" />
+        </dlbm>
+        <dlbm name="低矮独立房屋建筑" code="0550" />
+    </dlbm>
+    <dlbm name="道路" code="0600">
+        <dlbm name="铁路" code="0610" />
+        <dlbm name="公路" code="0620" />
+        <dlbm name="城市道路" code="0630" />
+        <dlbm name="乡村道路" code="0640" />
+    </dlbm>
+    <dlbm name="构筑物" code="0700">
+        <dlbm name="硬化地表" code="0710">
+            <dlbm name="广场" code="0711" />
+            <dlbm name="露天体育场" code="0712" />
+            <dlbm name="停车场" code="0713" />
+            <dlbm name="停机坪与跑道" code="0714" />
+            <dlbm name="硬化护坡" code="0715" />
+            <dlbm name="场院" code="0716" />
+            <dlbm name="露天堆放场" code="0717" />
+            <dlbm name="碾压踩踏地表" code="0718" />
+            <dlbm name="其他硬化地表" code="0719" />
+        </dlbm>
+        <dlbm name="水工设施" code="0720">
+            <dlbm name="堤坝" code="0721" />
+            <dlbm name="闸" code="0722" />
+            <dlbm name="排灌泵站" code="0723" />
+            <dlbm name="其它水工构筑物" code="0729" />
+        </dlbm>
+        <dlbm name="交通设施" code="0730">
+            <dlbm name="隧道" code="0731" />
+            <dlbm name="桥梁" code="0732" />
+            <dlbm name="码头" code="0733" />
+            <dlbm name="车渡" code="0734" />
+            <dlbm name="高速公路出入口" code="0735" />
+            <dlbm name="加油（汽）、充电站" code="0736" />
+        </dlbm>
+        <dlbm name="城墙" code="0740" />
+        <dlbm name="温室、大棚" code="0750" />
+        <dlbm name="固化池" code="0760">
+            <dlbm name="游泳池" code="0761" />
+            <dlbm name="污水处理池" code="0762" />
+            <dlbm name="晒盐池" code="0763" />
+            <dlbm name="其他固化池" code="0769" />
+        </dlbm>
+        <dlbm name="工业设施" code="0770" />
+        <dlbm name="沙障" code="0780" />
+        <dlbm name="其他构筑物" code="0790" />
+    </dlbm>
+    <dlbm name="人工堆掘地" code="0800">
+        <dlbm name="露天采掘场" code="0810">
+            <dlbm name="露天煤矿采掘场" code="0811" />
+            <dlbm name="露天铁矿采掘场" code="0812" />
+            <dlbm name="露天铜矿采掘场" code="0813" />
+            <dlbm name="露天采石场" code="0814" />
+            <dlbm name="露天稀土矿采掘场" code="0815" />
+            <dlbm name="其他采掘场" code="0819" />
+        </dlbm>
+        <dlbm name="堆放物" code="0820">
+            <dlbm name="尾矿堆放物" code="0821" />
+            <dlbm name="垃圾堆放物" code="0822" />
+            <dlbm name="其他堆放物" code="0829" />
+        </dlbm>
+        <dlbm name="建筑工地" code="0830">
+            <dlbm name="拆迁待建工地" code="0831" />
+            <dlbm name="房屋建筑工地" code="0832" />
+            <dlbm name="道路建筑工地" code="0833" />
+            <dlbm name="其他建筑工地" code="0839" />
+        </dlbm>
+        <dlbm name="其他人工堆掘地" code="0890" />
+    </dlbm>
+    <dlbm name="荒漠与裸露地表" code="0900">
+        <dlbm name="盐碱地表" code="0910" />
+        <dlbm name="泥土地表" code="0920" />
+        <dlbm name="沙质地表" code="0930" />
+        <dlbm name="砾石地表" code="0940" />
+        <dlbm name="岩石地表" code="0950" />
+    </dlbm>
+    <dlbm name="水域" code="1000">
+        <dlbm name="水域" code="1001"/>
+        <dlbm name="河渠" code="1010">
+            <dlbm name="河流" code="1011" />
+            <dlbm name="水渠" code="1012" />
+        </dlbm>
+        <dlbm name="湖泊" code="1020" />
+        <dlbm name="库塘" code="1030">
+            <dlbm name="水库" code="1031" />
+            <dlbm name="坑塘" code="1032" />
+        </dlbm>
+        <dlbm name="海面" code="1040" />
+        <dlbm name="冰川与常年积雪" code="1050">
+            <dlbm name="冰川" code="1051" />
+            <dlbm name="常年积雪" code="1052" />
+        </dlbm>
+    </dlbm>
+    <dlbm name="地理单元" code="1100">
+        <dlbm name="行政区划与管理单元" code="1110">
+            <dlbm name="国家级行政区" code="1111" />
+            <dlbm name="省级行政区" code="1112" />
+            <dlbm name="特别行政区" code="1113" />
+            <dlbm name="地、市、州级行政区" code="1114" />
+            <dlbm name="县级行政区" code="1115" />
+            <dlbm name="乡、镇行政区" code="1116" />
+            <dlbm name="行政村" code="1117" />
+            <dlbm name="城市中心城区" code="1118" />
+            <dlbm name="其他特殊行政管理区" code="1119" />
+        </dlbm>
+        <dlbm name="社会经济区域单元" code="1120">
+            <dlbm name="主体功能区" code="1121" />
+            <dlbm name="开发区、保税区" code="1122" />
+            <dlbm name="国有农、林、牧场" code="1123" />
+            <dlbm name="自然、文化保护区" code="1124" />
+            <dlbm name="自然、文化遗产" code="1125" />
+            <dlbm name="风景名胜区、旅游区" code="1126" />
+            <dlbm name="森林公园" code="1127" />
+            <dlbm name="地质公园" code="1128" />
+            <dlbm name="行、蓄、滞洪区" code="1129" />
+        </dlbm>
+        <dlbm name="自然地理单元" code="1130">
+            <dlbm name="流域" code="1131" />
+            <dlbm name="地形分区" code="1132" />
+            <dlbm name="地貌类型单元" code="1133" />
+            <dlbm name="湿地保护区" code="1134" />
+            <dlbm name="沼泽区" code="1135" />
+        </dlbm>
+        <dlbm name="城镇综合功能单元" code="1140">
+            <dlbm name="居住小区" code="1141" />
+            <dlbm name="工矿企业" code="1142" />
+            <dlbm name="单位院落" code="1143" />
+            <dlbm name="休闲娱乐、景区" code="1144" />
+            <dlbm name="体育活动场所" code="1145" />
+            <dlbm name="名胜古迹" code="1146" />
+            <dlbm name="宗教场所" code="1147" />
+        </dlbm>
+    </dlbm>
+    <dlbm name="地形" code="1200">
+        <dlbm name="高程信息" code="1210" />
+        <dlbm name="坡度信息" code="1220" />
+        <dlbm name="坡向信息" code="1230" />
+    </dlbm>
+</root>
