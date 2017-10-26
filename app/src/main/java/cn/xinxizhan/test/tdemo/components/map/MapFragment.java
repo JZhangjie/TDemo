@@ -20,6 +20,7 @@ import com.esri.android.map.LocationDisplayManager;
 import com.esri.android.map.MapView;
 import com.esri.android.map.event.OnSingleTapListener;
 import com.esri.android.map.event.OnStatusChangedListener;
+import com.esri.core.geometry.Point;
 
 import cn.xinxizhan.test.tdemo.R;
 
@@ -67,6 +68,7 @@ public class MapFragment extends Fragment implements MapContract.View,View.OnCli
                     mLocationManager.start();
                     mLocationManager.setAllowNetworkLocation(true);
                     mLocationManager.setShowLocation(false);
+                    mLocationManager.setShowPings(false);
                     mLocationManager.setLocationListener(new LocationListener() {
                         @Override
                         public void onLocationChanged(Location location) {
@@ -143,6 +145,10 @@ public class MapFragment extends Fragment implements MapContract.View,View.OnCli
             case R.id.map_btn_location:
                 if(mLocationManager!= null){
                     mLocationManager.setShowLocation(!mLocationManager.isShowLocation());
+                    mLocationManager.setShowPings(mLocationManager.isShowLocation());
+                    mLocation =mLocationManager.getLocation();
+                    Point point = new Point(mLocation.getLongitude(),mLocation.getLatitude());
+                    mMapView.centerAt(point,true);
                 }
                 break;
             case R.id.map_btn_layercontrol:

@@ -27,6 +27,8 @@ public interface DBListContract {
 
         void uploadDBFile(DBFile dbFile);
 
+        boolean backPressed();
+
     }
 
     interface View extends BaseView<DBListContract.Presenter>{
@@ -38,6 +40,12 @@ public interface DBListContract {
         void refreshAdapter();
 
         void showToastMessage(String message);
+
+        void startProgressbar(String message);
+
+        void stopProgressbar();
+
+        boolean backPressed();
 
     }
 

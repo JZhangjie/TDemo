@@ -1,6 +1,7 @@
 package cn.xinxizhan.test.tdemo.components.casedetail;
 
 import android.graphics.Bitmap;
+import android.location.Location;
 
 import com.esri.core.map.Graphic;
 
@@ -8,10 +9,8 @@ import java.io.File;
 
 import cn.xinxizhan.test.tdemo.components.BasePresenter;
 import cn.xinxizhan.test.tdemo.components.BaseView;
-import cn.xinxizhan.test.tdemo.components.dblist.DBListContract;
 import cn.xinxizhan.test.tdemo.data.model.DBCase;
 import cn.xinxizhan.test.tdemo.data.model.DBFile;
-import io.reactivex.Observable;
 
 /**
  * Created by admin on 2017/10/11.
@@ -34,6 +33,8 @@ public interface CaseDetailContract {
         void showDBCase();
 
         String getDLMCFromDLBM(String dlbm);
+
+        String getDLBMFromDLMC(String dlmc, DBCase tempCase);
 
         String getDCRAliasname();
 
@@ -73,6 +74,8 @@ public interface CaseDetailContract {
         void zoomToCurrentCase(Graphic graphic);
 
         void showCaseList();
+
+        Location getLocation();
 
     }
 

@@ -9,9 +9,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,6 +34,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.support.design.R.id.wrap_content;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -38,6 +46,7 @@ public class DBListFragment extends Fragment implements DBListContract.View, Swi
     private SwipeRefreshLayout mSwipe;
     private DBListContract.Presenter mPresenter;
     private DBListAdapter mAdapter;
+    private PopupWindow progressbar;
 
     public DBListFragment() {
         // Required empty public constructor
@@ -130,6 +139,59 @@ public class DBListFragment extends Fragment implements DBListContract.View, Swi
     @Override
     public void showToastMessage(String message) {
         Toast.makeText(this.getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void startProgressbar(String message) {
+        if(progressbar !=null && progressbar.isShowing()){
+            progressbar.dismiss();
+        }
+        View progressbarview = LayoutInflater.from(this.getActivity()).inflate(R.layout.control_working,null);
+        TextView progressbartext = (TextView) progressbarview.findViewById(R.id.progressBar_text);
+        progressbartext.setText(message==null?"执行中...":message+"...");
+        progressbar = new PopupWindow(progressbarview);
+        progressbar.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        progressbar.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
+        progressbar.setOutsideTouchable(false);
+        progressbar.setFocusable(false);
+        progressbar.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+
+        progressbar.showAtLocation(this.getView(), Gravity.CENTER,0,0);
+    }
+
+    @Override
+    public void stopProgressbar() {
+        if(progressbar !=null)
+            progressbar.dismiss();
+    }
+
+    @Override
+    public boolean backPressed() {
+        if(progressbar!=null && progressbar.isShowing()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(DBListFragment.this.getActivity());
+            builder.setTitle("取消当前任务");
+            builder.setMessage("是否取消当前任务");
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    progressbar.dismiss();
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.show();
+            return true;
+        }
+        return false;
     }
 
     private DBListAdapter.DBListAdapterListener dbListAdapterListener = new DBListAdapter.DBListAdapterListener() {

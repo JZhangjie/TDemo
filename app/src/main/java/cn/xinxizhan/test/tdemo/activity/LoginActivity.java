@@ -13,6 +13,7 @@ import cn.xinxizhan.test.tdemo.components.userlogin.UserloginPresenter;
 import cn.xinxizhan.test.tdemo.constant.ApplicationConstants;
 import cn.xinxizhan.test.tdemo.data.model.User;
 import cn.xinxizhan.test.tdemo.data.model.UserRepository;
+import cn.xinxizhan.test.tdemo.utils.PermissionHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        PermissionHelper.getPermission(LoginActivity.this);
 
         UserloginContract.View view = (UserloginContract.View)getSupportFragmentManager().findFragmentById(R.id.login_activity_fragment);
         mUserloginPresenter = new UserloginPresenter(view,mUserloginCallback);

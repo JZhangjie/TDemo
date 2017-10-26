@@ -47,5 +47,5 @@
     <color name="bg_button_login">#029BDE</color>
 
     <color name="clickable_text">#0066ff</color>
-
+    <color name="progress_back">#99000000</color>
 </resources>

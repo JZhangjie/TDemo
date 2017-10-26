@@ -1,6 +1,5 @@
 package cn.xinxizhan.test.tdemo.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.xinxizhan.test.tdemo.data.base.KeyValueItem;
@@ -12,7 +11,7 @@ import cn.xinxizhan.test.tdemo.data.base.KeyValueItem;
 
 public class DLBMHelper {
 
-    public static String FindValueByCode(String code,List<KeyValueItem> list) {
+    public static String findValueByCode(String code, List<KeyValueItem> list) {
         if(list!=null&&code!=null)
         {
             for(KeyValueItem item :list)
@@ -24,5 +23,19 @@ public class DLBMHelper {
             }
         }
         return code;
+    }
+
+    public static String findCodeByValue(String value, List<KeyValueItem> list) {
+        if(list!=null&&value!=null)
+        {
+            for(KeyValueItem item :list)
+            {
+                if(value.equals(item.getValue()))
+                {
+                    return item.getCode();
+                }
+            }
+        }
+        return value;
     }
 }

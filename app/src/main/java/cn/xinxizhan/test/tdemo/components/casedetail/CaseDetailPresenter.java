@@ -2,22 +2,19 @@ package cn.xinxizhan.test.tdemo.components.casedetail;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
-import org.w3c.dom.ProcessingInstruction;
+import android.location.Location;
 
 import java.io.File;
-import java.io.Flushable;
 import java.util.Arrays;
 import java.util.Date;
 
-import cn.xinxizhan.test.tdemo.R;
 import cn.xinxizhan.test.tdemo.constant.ApplicationConstants;
-import cn.xinxizhan.test.tdemo.data.base.KeyValueItem;
 import cn.xinxizhan.test.tdemo.data.model.DBCase;
 import cn.xinxizhan.test.tdemo.data.model.DBFile;
 import cn.xinxizhan.test.tdemo.data.model.User;
 import cn.xinxizhan.test.tdemo.utils.DLBMHelper;
 import cn.xinxizhan.test.tdemo.utils.FileHelper;
+import cn.xinxizhan.test.tdemo.utils.ImgHelper;
 import cn.xinxizhan.test.tdemo.utils.PathHelper;
 import cn.xinxizhan.test.tdemo.utils.StringHelper;
 import io.reactivex.Observable;
@@ -50,7 +47,6 @@ public class CaseDetailPresenter implements CaseDetailContract.Presenter {
 
     @Override
     public void start() {
-        this.mView.showCase(this.mCurrentDBCase);
     }
 
     @Override
@@ -105,7 +101,7 @@ public class CaseDetailPresenter implements CaseDetailContract.Presenter {
 
     private boolean hasImages(){
         if(mCurrentDBFile!=null && mCurrentDBCase != null){
-            File images = new File(PathHelper.getImagePath()+"/"+mCurrentDBCase.getBsm());
+            File images = new File(PathHelper.getImagePath()+"/"+mCurrentDBFile.getName()+"/"+mCurrentDBCase.getBsm());
             if(images.exists() && images.isDirectory()){
                 for(File image:images.listFiles()){
                     if(image.getName().endsWith(IMAGEPOSTFIX))
@@ -124,7 +120,28 @@ public class CaseDetailPresenter implements CaseDetailContract.Presenter {
 
     @Override
     public String getDLMCFromDLBM(String dlbm) {
-        return DLBMHelper.FindValueByCode(dlbm,ApplicationConstants.CCBMList);
+        if(mCurrentDBCase != null){
+            if(mCurrentDBCase.getSfgd() == 0){
+                return DLBMHelper.findValueByCode(dlbm,ApplicationConstants.FGDBMList);
+            }
+            else {
+                return DLBMHelper.findValueByCode(dlbm,ApplicationConstants.GDBMList);
+            }
+        }
+        return dlbm;
+    }
+
+    @Override
+    public String getDLBMFromDLMC(String dlmc, DBCase tempCase) {
+        if(tempCase != null){
+            if(tempCase.getSfgd() == 0){
+                return DLBMHelper.findCodeByValue(dlmc,ApplicationConstants.FGDBMList);
+            }
+            else {
+                return DLBMHelper.findCodeByValue(dlmc,ApplicationConstants.GDBMList);
+            }
+        }
+        return dlmc;
     }
 
     @Override
@@ -142,7 +159,7 @@ public class CaseDetailPresenter implements CaseDetailContract.Presenter {
     public void showImages() {
         mView.clearImages();
         if(mCurrentDBFile!=null && mCurrentDBCase != null){
-            File images = new File(PathHelper.getImagePath()+"/"+mCurrentDBCase.getBsm());
+            File images = new File(PathHelper.getImagePath()+"/"+mCurrentDBFile.getName()+"/"+mCurrentDBCase.getBsm());
 
             if(images.exists() && images.isDirectory()){
                 File[] templist = images.listFiles();
@@ -185,7 +202,7 @@ public class CaseDetailPresenter implements CaseDetailContract.Presenter {
     public void capture() {
         if(mCurrentDBFile != null && mCurrentDBCase != null)
         {
-            File newImage = FileHelper.getPath(PathHelper.getImagePath(),"/"+ getCurrentDBCase().getBsm() +"/"+ StringHelper.getImageName());
+            File newImage = FileHelper.getPath(PathHelper.getImagePath(),"/"+mCurrentDBFile.getName()+"/"+ getCurrentDBCase().getBsm() +"/"+ StringHelper.getImageName());
             mView.capture(newImage);
         }
     }
@@ -200,6 +217,11 @@ public class CaseDetailPresenter implements CaseDetailContract.Presenter {
             @Override
             public void subscribe(@NonNull ObservableEmitter<File> e) throws Exception {
                 FileHelper.compressImage(file);
+                Location location = mCallback.getLocation();
+                if(location!=null)
+                {
+                    ImgHelper.setGPS(file.getPath(),location.getLatitude(),location.getLongitude());
+                }
                 e.onNext(file);
             }
         }).observeOn(AndroidSchedulers.mainThread())

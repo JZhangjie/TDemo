@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -53,7 +51,7 @@ public class CaseListAdapter extends RecyclerView.Adapter<CaseListAdapter.CaseVi
     public void onBindViewHolder(CaseViewHolder holder, int position) {
         DBCase caseModel = mCaseList.get(position);
         holder.fid.setText(caseModel.getBsm()+"");
-        holder.cc.setText(caseModel.getCc()==null?"": DLBMHelper.FindValueByCode(caseModel.getCc().toString(), ApplicationConstants.CCBMList));
+        holder.cc.setText(caseModel.getCc()==null?"": DLBMHelper.findValueByCode(caseModel.getCc().toString(), ApplicationConstants.CCBMList));
         holder.view.setTag(caseModel);
         holder.view.setOnClickListener(mListener);
     }

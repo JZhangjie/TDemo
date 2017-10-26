@@ -25,7 +25,6 @@ import android.widget.Toast;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.io.File;
-import java.util.Date;
 
 import cn.xinxizhan.test.tdemo.R;
 import cn.xinxizhan.test.tdemo.activity.ImageShowActivity;
@@ -33,7 +32,6 @@ import cn.xinxizhan.test.tdemo.constant.ApplicationConstants;
 import cn.xinxizhan.test.tdemo.controls.popup.DLBMTreeFragment;
 import cn.xinxizhan.test.tdemo.data.base.KeyValueItem;
 import cn.xinxizhan.test.tdemo.data.model.DBCase;
-import cn.xinxizhan.test.tdemo.data.model.User;
 import cn.xinxizhan.test.tdemo.utils.StringHelper;
 import cn.xinxizhan.test.tdemo.utils.ViewHelper;
 
@@ -72,7 +70,6 @@ public class CaseDetailFragment extends Fragment implements CaseDetailContract.V
     public CaseDetailFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -172,7 +169,6 @@ public class CaseDetailFragment extends Fragment implements CaseDetailContract.V
         this.dlbm.setText(mCase==null?"":mPresenter.getDLMCFromDLBM(mCase.getSjcc()));
         //CC码显示
         this.cc.setText(mCase==null?"":mPresenter.getDLMCFromDLBM(mCase.getCc()));
-
     }
 
     @Override
@@ -183,13 +179,12 @@ public class CaseDetailFragment extends Fragment implements CaseDetailContract.V
         mCaseModel.setMemo(this.memo.getText().toString());
         mCaseModel.setSfgd(this.sfgd.getCheckedRadioButtonId() == R.id.attr_edit_sfgd_rbt1 ? 1 : 0);
         mCaseModel.setSflh(this.sflh.getCheckedRadioButtonId() == R.id.attr_edit_sflh_rbt1 ? 1 : 0);
-        if(this.dlbm.getTag() !=null && this.dlbm.getTag() instanceof KeyValueItem)
-        {
-            mCaseModel.setSjcc(((KeyValueItem) this.dlbm.getTag()).getCode());
-        }
-        else {
+        String value = this.dlbm.getText().toString().trim();
+        String code = mPresenter.getDLBMFromDLMC(value,mCaseModel );
+        if(code.equals(value))
             mCaseModel.setSjcc("");
-        }
+        else
+            mCaseModel.setSjcc(code);
 
         return mCaseModel;
     }

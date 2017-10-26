@@ -1,8 +1,11 @@
 package cn.xinxizhan.test.tdemo.activity;
 
+import android.content.DialogInterface;
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,6 +62,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DBListContract.Presenter mDBListPresenter;
     private CaseDetailContract.Presenter mCaseDetailPresenter;
     private CaseListContract.Presenter mCaseListPresenter;
+
+    @Override
+    public void onBackPressed() {
+        if(mDBListPresenter!=null && mDBListPresenter.backPressed()){
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("退出");
+        builder.setMessage("是否要返回登录界面");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MainActivity.super.onBackPressed();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +176,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         public void showCaseList() {
             mContainerPresenter.show(ApplicationConstants.CASELIST);
+        }
+
+        @Override
+        public Location getLocation() {
+            return mMapPresenter.getCurrentLocation();
         }
 
     };

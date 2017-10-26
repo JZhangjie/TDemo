@@ -14,13 +14,21 @@ import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.CRC32;
+import java.util.zip.CheckedOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import cn.xinxizhan.test.tdemo.data.base.DBManager;
 import cn.xinxizhan.test.tdemo.utils.FileHelper;
 import cn.xinxizhan.test.tdemo.utils.HttpHelper;
+import cn.xinxizhan.test.tdemo.utils.PathHelper;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -173,10 +181,47 @@ public class DBFile extends GraphicsLayer {
     public Observable<String> zip(){
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
-
+            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
+                File zipFile = new File(zippath);
+                if(zipFile.exists()){
+                    zipFile.delete();
+                }
+                ZipOutputStream zipOutputStream = new ZipOutputStream(new CheckedOutputStream(new FileOutputStream(zipFile),new CRC32()));
+                File db = new File(getDbpath());
+                if(db.exists()){
+                    zip(zipOutputStream,db,db.getName());
+                }
+                File images = new File(PathHelper.getImagePath().getPath()+"/"+getName());
+                if(images.exists()){
+                    for(File image :images.listFiles()){
+                        zip(zipOutputStream,image,images.getName() + File.separator + image.getName());
+                    }
+                }
+                zipOutputStream.flush();
+                zipOutputStream.close();
+                emitter.onNext(zippath);
             }
         });
+    }
+    private void zip(ZipOutputStream outputStream, File file, String name){
+        try {
+            if(file.isFile()){
+                outputStream.putNextEntry(new ZipEntry(name));
+                FileInputStream fileInputStream = new FileInputStream(file);
+                byte[] buffer = new byte[1024];
+                while (fileInputStream.read(buffer)!=-1){
+                    outputStream.write(buffer,0,buffer.length);
+                }
+                fileInputStream.close();
+            }
+            else if(file.isDirectory()){
+                for(File f :file.listFiles()){
+                    zip(outputStream,f,name+File.separator+f.getName());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Observable<String> upload(){
@@ -184,7 +229,7 @@ public class DBFile extends GraphicsLayer {
         if(file==null || !file.exists())
             return null;
         HashMap<String,String> map = new HashMap<>();
-        map.put("name",file.getName().substring(0,file.getName().lastIndexOf(".")));
+        map.put("name",file.getName());
         return HttpHelper.postFile(url,file,"name",map);
     }
 
