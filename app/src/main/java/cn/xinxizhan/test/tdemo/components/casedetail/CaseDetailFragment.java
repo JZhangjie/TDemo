@@ -1,12 +1,9 @@
 package cn.xinxizhan.test.tdemo.components.casedetail;
 
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -26,11 +23,13 @@ import com.google.android.flexbox.FlexboxLayout;
 
 import java.io.File;
 
+import cn.jdz.glib.capture.CaptureActivity;
+import cn.jdz.glib.capture.CaptureConfigStatus;
+import cn.jdz.glib.capture.ImageShowActivity;
+import cn.jdz.glib.data.KeyValueItem;
 import cn.xinxizhan.test.tdemo.R;
-import cn.xinxizhan.test.tdemo.activity.ImageShowActivity;
 import cn.xinxizhan.test.tdemo.constant.ApplicationConstants;
-import cn.xinxizhan.test.tdemo.controls.popup.DLBMTreeFragment;
-import cn.xinxizhan.test.tdemo.data.base.KeyValueItem;
+import cn.xinxizhan.test.tdemo.controls.dlbmpopup.DLBMTreeFragment;
 import cn.xinxizhan.test.tdemo.data.model.DBCase;
 import cn.xinxizhan.test.tdemo.utils.StringHelper;
 import cn.xinxizhan.test.tdemo.utils.ViewHelper;
@@ -192,16 +191,24 @@ public class CaseDetailFragment extends Fragment implements CaseDetailContract.V
     @Override
     public void capture(File file) {
         this.tempImageFile = file;
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (Build.VERSION.SDK_INT < 24) {
-            //7.0之后不允许这样调用
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-        } else {
-            ContentValues contentValues = new ContentValues(1);
-            contentValues.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
-            Uri uri = this.getActivity().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        }
+        //使用系统相机
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (Build.VERSION.SDK_INT < 24) {
+//            //7.0之后不允许这样调用
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+//        } else {
+//            ContentValues contentValues = new ContentValues(1);
+//            contentValues.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
+//            Uri uri = this.getActivity().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//        }
+//        startActivityForResult(intent, CAPTURESUCCESS);
+
+        //使用自定义的相机
+        Intent intent = new Intent(getActivity(), CaptureActivity.class);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,this.tempImageFile);
+        intent.putExtra(CaptureActivity.LOCATION, CaptureConfigStatus.REQUEST);
+        intent.putExtra(CaptureActivity.ORIENTATION, CaptureConfigStatus.REQUEST);
         startActivityForResult(intent, CAPTURESUCCESS);
     }
 

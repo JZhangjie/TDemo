@@ -41,21 +41,21 @@ public class CaseListPresenter implements CaseListContract.Presenter {
     @Override
     public void showFilterCaseList(CaselistFilterType filterType) {
         List<DBCase> tempCaseList = new ArrayList<>();
-        if(this.mCurrentDBFile != null && this.mCurrentDBFile.getManager() != null){
+        if(this.mCurrentDBFile != null && this.mCurrentDBFile.getDatas() != null){
             switch (filterType){
                 case ALL:
-                    for(DBCase dbCase:this.mCurrentDBFile.getManager()){
+                    for(DBCase dbCase:this.mCurrentDBFile.getDatas()){
                         tempCaseList.add(dbCase);
                     }
                     break;
                 case DHC:
-                    for(DBCase dbCase:this.mCurrentDBFile.getManager()){
+                    for(DBCase dbCase:this.mCurrentDBFile.getDatas()){
                         if(dbCase.getSfydc()==0)
                             tempCaseList.add(dbCase);
                     }
                     break;
                 case YHC:
-                    for(DBCase dbCase:this.mCurrentDBFile.getManager()){
+                    for(DBCase dbCase:this.mCurrentDBFile.getDatas()){
                         if(dbCase.getSfydc()==1)
                             tempCaseList.add(dbCase);
                     }

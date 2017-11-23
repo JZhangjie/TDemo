@@ -3,7 +3,6 @@ package cn.xinxizhan.test.tdemo.data.model;
 import android.graphics.Color;
 
 import com.esri.android.map.GraphicsLayer;
-import com.esri.android.map.popup.PopupUtil;
 import com.esri.core.geometry.GeometryEngine;
 import com.esri.core.geometry.Polygon;
 import com.esri.core.map.Graphic;
@@ -15,18 +14,17 @@ import org.codehaus.jackson.JsonParser;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import cn.xinxizhan.test.tdemo.data.base.DBManager;
-import cn.xinxizhan.test.tdemo.utils.FileHelper;
+import cn.jdz.glib.data.dbaccess.IDBManager;
+import cn.jdz.glib.data.dbaccess.sqlite.SqliteManager;
 import cn.xinxizhan.test.tdemo.utils.HttpHelper;
 import cn.xinxizhan.test.tdemo.utils.PathHelper;
 import io.reactivex.Observable;
@@ -45,7 +43,8 @@ public class DBFile extends GraphicsLayer {
     private String url;
     private String dbpath;
     private String zippath;
-    private DBManager<DBCase> manager;
+    private IDBManager<DBCase> manager;
+    private List<DBCase> mDatas;
 
     public DBFile(){
         super(RenderingMode.STATIC);
@@ -97,12 +96,8 @@ public class DBFile extends GraphicsLayer {
         this.zippath = zippath;
     }
 
-    public DBManager<DBCase> getManager() {
-        return manager;
-    }
-
-    public void setManager(DBManager<DBCase> manager) {
-        this.manager = manager;
+    public List<DBCase> getDatas() {
+        return mDatas;
     }
 
     //endregion
@@ -114,13 +109,13 @@ public class DBFile extends GraphicsLayer {
     }
 
     public DBCase getDefaultCase(){
-        if(manager!=null && manager.size()>0)
-            return manager.get(0);
+        if(mDatas!=null &&  mDatas.size()>0)
+            return mDatas.get(0);
         return null;
     }
 
     public DBCase getCaseByGraphic(Graphic graphic){
-        for(DBCase dbCase:manager){
+        for(DBCase dbCase:mDatas){
             if(dbCase.getGraphic().getUid()==graphic.getUid()){
                 return dbCase;
             }
@@ -132,7 +127,7 @@ public class DBFile extends GraphicsLayer {
         Graphic graphic = getGraphic(graphicid);
         if(graphic==null)
             return null;
-        for(DBCase dbCase:manager){
+        for(DBCase dbCase:mDatas){
             if(dbCase.getGraphic().getUid()==graphic.getUid()){
                 return dbCase;
             }
@@ -160,11 +155,11 @@ public class DBFile extends GraphicsLayer {
 
     private int loadData() throws IOException {
         if(manager==null){
-            manager = new DBManager<>(dbpath,"gddc","BSM",DBCase.class);
-            int r = manager.load();
-            if(r>0){
-                for(int i=0;i<manager.size();i++){
-                    DBCase dbCase = manager.get(i);
+            manager = new SqliteManager<>(dbpath,"gddc","BSM",DBCase.class);
+            mDatas = manager.getAll();
+            if(mDatas != null){
+                for(int i=0;i<mDatas.size();i++){
+                    DBCase dbCase = mDatas.get(i);
                     JsonFactory f = new JsonFactory();
                     JsonParser jp = f.createJsonParser(dbCase.getShape());
                     Polygon p = (Polygon) GeometryEngine.jsonToGeometry(jp).getGeometry();
@@ -173,7 +168,7 @@ public class DBFile extends GraphicsLayer {
                     dbCase.setGraphic(DBFile.this.getGraphic(id));
                 }
             }
-            return r;
+            return mDatas.size();
         }
         return 0;
     }
@@ -234,7 +229,7 @@ public class DBFile extends GraphicsLayer {
     }
 
     public boolean update(DBCase dbCase){
-        if(manager!=null && manager.contains(dbCase)){
+        if(mDatas!=null && mDatas.contains(dbCase)){
             boolean result = manager.update(dbCase);
             if(result)
                 updateGraphic(dbCase.getGraphic().getUid(),getSymbol(dbCase.getSfydc()));

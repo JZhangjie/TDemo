@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:name="cn.xinxizhan.test.tdemo.controls.container.ContainerFragment"
+                android:name="cn.jdz.glib.components.container.ContainerFragment"
                 tools:layout="@layout/fragment_container"/>
         </FrameLayout>
     </LinearLayout>

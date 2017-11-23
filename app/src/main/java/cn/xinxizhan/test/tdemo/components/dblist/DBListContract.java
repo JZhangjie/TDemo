@@ -2,12 +2,9 @@ package cn.xinxizhan.test.tdemo.components.dblist;
 
 import java.util.List;
 
-import cn.xinxizhan.test.tdemo.components.BasePresenter;
-import cn.xinxizhan.test.tdemo.components.BaseView;
-import cn.xinxizhan.test.tdemo.components.dblist.adapter.DBListAdapter;
-import cn.xinxizhan.test.tdemo.components.map.MapContract;
+import cn.jdz.glib.components.BasePresenter;
+import cn.jdz.glib.components.BaseView;
 import cn.xinxizhan.test.tdemo.data.model.DBFile;
-import io.reactivex.Observable;
 
 /**
  * Created by admin on 2017/10/10.
@@ -15,7 +12,7 @@ import io.reactivex.Observable;
 
 public interface DBListContract {
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
 
         void getDBFiles();
 
@@ -31,7 +28,7 @@ public interface DBListContract {
 
     }
 
-    interface View extends BaseView<DBListContract.Presenter>{
+    interface View extends BaseView<Presenter> {
 
         void setAdapterData(List<DBFile> dbfileList);
 

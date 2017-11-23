@@ -5,8 +5,9 @@ import android.location.Location;
 import com.esri.android.map.GraphicsLayer;
 import com.esri.android.map.MapView;
 import com.esri.core.geometry.Geometry;
-import cn.xinxizhan.test.tdemo.components.BasePresenter;
-import cn.xinxizhan.test.tdemo.components.BaseView;
+
+import cn.jdz.glib.components.BasePresenter;
+import cn.jdz.glib.components.BaseView;
 
 /**
  * Created by admin on 2017/10/10.
@@ -14,7 +15,7 @@ import cn.xinxizhan.test.tdemo.components.BaseView;
 
 public interface MapContract {
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
 
         void zoomTo(Geometry geometry);
 
@@ -27,7 +28,7 @@ public interface MapContract {
         Location getCurrentLocation();
     }
 
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
 
         MapView getMap();
 

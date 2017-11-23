@@ -1,7 +1,7 @@
 package cn.xinxizhan.test.tdemo.components.userlogin;
 
-import cn.xinxizhan.test.tdemo.components.BasePresenter;
-import cn.xinxizhan.test.tdemo.components.BaseView;
+import cn.jdz.glib.components.BasePresenter;
+import cn.jdz.glib.components.BaseView;
 import cn.xinxizhan.test.tdemo.data.model.User;
 
 /**
@@ -10,7 +10,7 @@ import cn.xinxizhan.test.tdemo.data.model.User;
 
 public interface UserloginContract {
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
 
         void login();
 
@@ -20,7 +20,7 @@ public interface UserloginContract {
 
     }
 
-    interface View extends BaseView<UserloginContract.Presenter>{
+    interface View extends BaseView<Presenter> {
 
         User getUserFromView();
 

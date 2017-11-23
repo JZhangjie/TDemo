@@ -2,8 +2,7 @@ package cn.xinxizhan.test.tdemo.utils;
 
 import java.util.List;
 
-import cn.xinxizhan.test.tdemo.data.base.KeyValueItem;
-
+import cn.jdz.glib.data.KeyValueItem;
 
 /**
  * Created by admin on 2017/9/4.

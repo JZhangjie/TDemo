@@ -42,6 +42,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile project(':gislib')
     compile 'com.esri.arcgis.android:arcgis-android:10.2.9'
     compile 'com.google.android:flexbox:0.2.2'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'

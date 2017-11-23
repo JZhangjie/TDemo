@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorGray">#969696</color>
+    <color name="gray">#969696</color>
+    <color name="colorWhiteGray">#bdbdbd</color>
+    <color name="bg_gray">#999999</color>
+    <color name="apple_blue">#0999EC</color>
+    <color name="black">#000000</color>
+    <color name="map_point_bg">#A02EAFEB</color>
+    <color name="map_collection_bg">#FF4400</color>
+    <color name="map_collection_fragment_bg">#FAFAFA</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#ff0000</color>
+    <color name="orange">#F16601</color>
+    <color name="text_color">#342a2a</color>
+    <color  name="bg1">#F16601</color>
+    <color  name="bg2">#FF42a8d3</color>
+    <color  name="bg3">#FFf18c55</color>
+    <color  name="bg4">#FF71a845</color>
+    <color  name="bg5">#875ecb</color>
+    <color  name="bg6">#e8556d</color>
+    <color  name="bg7">#f5ad3b</color>
+    <color  name="bg8">#2ec494</color>
+    <color  name="bg9">#c754d5</color>
+    <color  name="bg10">#5d53df</color>
+    <color  name="bg11">#9998FE</color>
+    <color  name="bg12">#973366</color>
+    <color  name="bg13">#7D0200</color>
+    <color  name="bg14">#FDFE98</color>
+    <color  name="bg15">#7C8200</color>
+    <color  name="bg16">#D0F8C1</color>
+    <color  name="bg17">#FF4040</color>
+    <color  name="bg18">#EEB422</color>
+    <color  name="bg19">#CDCD00</color>
+    <color  name="bg20">#C0FF3E</color>
+    <color  name="bg21">#40E0D0</color>
+    <color  name="bg22">#00CD00</color>
+    <color  name="bg23">#FF1493</color>
+    <color  name="bg24">#EEEE00</color>
+    <color  name="bg25">#8DB6CD</color>
+    <color  name="bg26">#F2F2F2</color>
+
+    <color name="btn_text">#5788E7</color>
+    <color name="bg_button_login">#029BDE</color>
+
+    <color name="clickable_text">#0066ff</color>
+    <color name="progress_back">#99000000</color>
+</resources>

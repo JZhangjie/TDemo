@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.xinxizhan.test.tdemo.controls.popup.DLBMTreeFragment">
+    tools:context="cn.xinxizhan.test.tdemo.controls.dlbmpopup.DLBMTreeFragment">
     <ListView
         android:id="@+id/dlbm_tree_level_1"
         android:layout_width="140dp"

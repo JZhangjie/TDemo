@@ -8,7 +8,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import cn.jdz.glib.components.container.ContainerContract;
+import cn.jdz.glib.components.container.ContainerPresenter;
 import cn.xinxizhan.test.tdemo.R;
 import cn.xinxizhan.test.tdemo.components.casedetail.CaseDetailContract;
 import cn.xinxizhan.test.tdemo.components.casedetail.CaseDetailFragment;
@@ -35,9 +36,6 @@ import cn.xinxizhan.test.tdemo.components.dblist.DBListPresenter;
 import cn.xinxizhan.test.tdemo.components.map.MapContract;
 import cn.xinxizhan.test.tdemo.components.map.MapPresenter;
 import cn.xinxizhan.test.tdemo.constant.ApplicationConstants;
-import cn.xinxizhan.test.tdemo.controls.container.ContainerContract;
-import cn.xinxizhan.test.tdemo.controls.container.ContainerFragment;
-import cn.xinxizhan.test.tdemo.controls.container.ContainerPresenter;
 
 import cn.xinxizhan.test.tdemo.data.model.DBCase;
 import cn.xinxizhan.test.tdemo.data.model.DBFile;
@@ -45,11 +43,6 @@ import cn.xinxizhan.test.tdemo.data.model.DBFile;
 import cn.xinxizhan.test.tdemo.utils.FileHelper;
 import cn.xinxizhan.test.tdemo.utils.PermissionHelper;
 import cn.xinxizhan.test.tdemo.utils.XMLHelper;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{

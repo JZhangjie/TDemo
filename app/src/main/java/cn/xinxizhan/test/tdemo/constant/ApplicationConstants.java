@@ -3,7 +3,7 @@ package cn.xinxizhan.test.tdemo.constant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.xinxizhan.test.tdemo.data.base.KeyValueItem;
+import cn.jdz.glib.data.KeyValueItem;
 import cn.xinxizhan.test.tdemo.data.model.User;
 import cn.xinxizhan.test.tdemo.data.model.UserRepository;
 

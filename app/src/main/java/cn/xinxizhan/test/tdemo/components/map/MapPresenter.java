@@ -3,11 +3,12 @@ package cn.xinxizhan.test.tdemo.components.map;
 import android.location.Location;
 
 import com.esri.android.map.GraphicsLayer;
+import com.esri.android.map.Layer;
 import com.esri.android.map.MapView;
 import com.esri.core.geometry.Geometry;
 
+import cn.jdz.glib.data.gis.TWMTSLayer;
 import cn.xinxizhan.test.tdemo.constant.ApplicationConstants;
-import cn.xinxizhan.test.tdemo.data.esri.TianDiTuTiledMapServiceLayer;
 
 /**
  * Created by admin on 2017/10/10.
@@ -35,18 +36,8 @@ public class MapPresenter implements MapContract.Presenter {
     public void load(boolean overwrite) {
         if (overwrite || isFirst) {
             isFirst = false;
-            TianDiTuTiledMapServiceLayer mZXYXLayer = new TianDiTuTiledMapServiceLayer.Builder()
-                    .setUrl(ApplicationConstants.ZXYXURL)
-                    .setLayerId("img")
-                    .setStyle("default")
-                    .setFormat("tiles")
-                    .setTileMatrixSet("c").builder();
-            TianDiTuTiledMapServiceLayer mZXSLLayer = new TianDiTuTiledMapServiceLayer.Builder()
-                    .setUrl(ApplicationConstants.ZXSLURL)
-                    .setLayerId("vec")
-                    .setStyle("default")
-                    .setFormat("tiles")
-                    .setTileMatrixSet("c").builder();
+            Layer mZXYXLayer = new TWMTSLayer(ApplicationConstants.ZXYXURL);
+            Layer mZXSLLayer = new TWMTSLayer(ApplicationConstants.ZXSLURL);
             mZXSLLayer.setVisible(false);
             mMap.addLayer(mZXYXLayer);
             mMap.addLayer(mZXSLLayer);

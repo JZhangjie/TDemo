@@ -10,11 +10,9 @@ import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.io.File;
 import java.util.List;
 
 import cn.xinxizhan.test.tdemo.R;
-import cn.xinxizhan.test.tdemo.data.common.DBField;
 import cn.xinxizhan.test.tdemo.data.model.DBFile;
 import cn.xinxizhan.test.tdemo.data.model.DBFileStatus;
 

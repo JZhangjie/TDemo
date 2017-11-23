@@ -7,8 +7,8 @@ import com.esri.core.map.Graphic;
 
 import java.io.File;
 
-import cn.xinxizhan.test.tdemo.components.BasePresenter;
-import cn.xinxizhan.test.tdemo.components.BaseView;
+import cn.jdz.glib.components.BasePresenter;
+import cn.jdz.glib.components.BaseView;
 import cn.xinxizhan.test.tdemo.data.model.DBCase;
 import cn.xinxizhan.test.tdemo.data.model.DBFile;
 
@@ -18,7 +18,7 @@ import cn.xinxizhan.test.tdemo.data.model.DBFile;
 
 public interface CaseDetailContract {
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
 
         void setCurrentModel(DBFile currentDBFile);
 
@@ -52,7 +52,7 @@ public interface CaseDetailContract {
 
     }
 
-    interface View extends BaseView<CaseDetailContract.Presenter>{
+    interface View extends BaseView<Presenter> {
 
         void showToastMessage(String message);
 

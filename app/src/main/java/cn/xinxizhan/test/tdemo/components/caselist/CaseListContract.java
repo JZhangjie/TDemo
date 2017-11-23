@@ -2,9 +2,8 @@ package cn.xinxizhan.test.tdemo.components.caselist;
 
 import java.util.List;
 
-import cn.xinxizhan.test.tdemo.components.BasePresenter;
-import cn.xinxizhan.test.tdemo.components.BaseView;
-import cn.xinxizhan.test.tdemo.components.casedetail.CaseDetailContract;
+import cn.jdz.glib.components.BasePresenter;
+import cn.jdz.glib.components.BaseView;
 import cn.xinxizhan.test.tdemo.data.model.DBCase;
 import cn.xinxizhan.test.tdemo.data.model.DBFile;
 
@@ -14,7 +13,7 @@ import cn.xinxizhan.test.tdemo.data.model.DBFile;
 
 public interface CaseListContract {
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
 
         void setCurrentDBFile(DBFile dbFile);
 
@@ -24,7 +23,7 @@ public interface CaseListContract {
 
     }
 
-    interface View extends BaseView<CaseListContract.Presenter>{
+    interface View extends BaseView<Presenter> {
 
         void setAdapterData(List<DBCase> caseList);
 

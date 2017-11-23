@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.jdz.glib.capture.CaptureActivity">
+    <cn.jdz.glib.capture.CaptureView
+        android:id="@+id/capture_captureview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/capture_orientation"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+        <TextView
+            android:id="@+id/capture_location"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/capture_capture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageButton
+            android:id="@+id/capture_capture_btn"
+            android:background="#00000000"
+            android:src="@drawable/capture_capture"
+            android:onClick="onClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="Button" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/capture_show"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/capture_show_cancel"
+                android:background="#00000000"
+                android:onClick="onClick"
+                android:layout_weight="1"
+                android:src="@drawable/capture_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:id="@+id/capture_show_ok"
+                android:background="#00000000"
+                android:onClick="onClick"
+                android:layout_weight="1"
+                android:src="@drawable/capture_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/capture_positioning"
+        android:visibility="gone"
+        android:background="#ff999999"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="112dp">
+            <ImageView
+                android:id="@+id/capture_positioning_img"
+                android:layout_gravity="center"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/capture_positioning"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="bottom"
+                android:layout_gravity="center"
+                android:text="定位中..."/>
+        </LinearLayout>
+
+    </FrameLayout>
+</FrameLayout>

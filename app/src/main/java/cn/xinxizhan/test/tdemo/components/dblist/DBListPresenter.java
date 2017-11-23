@@ -1,19 +1,14 @@
 package cn.xinxizhan.test.tdemo.components.dblist;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import cn.xinxizhan.test.tdemo.components.dblist.adapter.DBListAdapter;
+import cn.jdz.glib.data.dbaccess.sqlite.SqliteManager;
 import cn.xinxizhan.test.tdemo.constant.ApplicationConstants;
-import cn.xinxizhan.test.tdemo.data.base.DBManager;
-import cn.xinxizhan.test.tdemo.data.common.DBField;
 import cn.xinxizhan.test.tdemo.data.model.DBFile;
 import cn.xinxizhan.test.tdemo.data.model.DBFileStatus;
 import cn.xinxizhan.test.tdemo.utils.FileHelper;
@@ -93,7 +88,7 @@ public class DBListPresenter implements DBListContract.Presenter {
                     JSONObject o = array.getJSONObject(i);
                     String name = o.getString("storname").trim();
                     String dbpath = FileHelper.getPath(ApplicationConstants.DBPATH + "/" + ApplicationConstants.USER.getXzqhdm() + "/" + name).getAbsolutePath();
-                    if (!name.endsWith(DBManager.POSTFIX)) {
+                    if (!name.endsWith(SqliteManager.POSTFIX)) {
                         continue;
                     }
                     String link = ApplicationConstants.HOSTURL + o.getString("link");
@@ -128,7 +123,7 @@ public class DBListPresenter implements DBListContract.Presenter {
                 if (dbs.isDirectory() && dbs.listFiles() != null) {
                     for (File file : dbs.listFiles()) {
                         DBFile dbFile = null;
-                        if (file.isFile() && file.getName().endsWith(DBManager.POSTFIX)) {
+                        if (file.isFile() && file.getName().endsWith(SqliteManager.POSTFIX)) {
                             for (DBFile tempdb : mDBFiles) {
                                 if (tempdb.getDbpath().equals(file.getPath())) {
                                     if (tempdb.getStatus() == DBFileStatus.NOTDOWMLOAD)
