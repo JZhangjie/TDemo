@@ -12,6 +12,12 @@
 * 文件帮助类，FileHelper。图片的压缩、文件的打包、根据path获取File、assert下文件复制、文本文件读取。
 
 ### 数据：data
-* dbaccess db文件读写-DBManager.使用具体的格式的db文件的时候，可以继承该类。
+* dbaccess 
+    * db文件读写-SqliteManager.使用具体的格式的db文件的时候，可以继承该类。
+    * excel文件读写ExcelManager
 * gis WMTS图层显示-TWMTSLayer
 *  键值对类-KeyValueItem 。可用于构建树形结构的节点
+
+### 控件
+* ExpandContainer一个可收起、打开的容器
+* ContainerContract是MVP模式的可动态改变高度的容器

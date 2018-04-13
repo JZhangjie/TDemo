@@ -40,33 +40,6 @@ public class SqliteManager<T> implements IDBManager<T>{
     private boolean isLoaded;
     public static final String POSTFIX = ".db";
 
-    //region 访问器
-    public String getmTableName() {
-        return mTableName;
-    }
-
-    public void setmTableName(String mTableName) {
-        this.mTableName = mTableName;
-    }
-
-    public String getmDBName() {
-        return mDBName;
-    }
-
-    public void setmDBName(String mDBName) {
-        this.mDBName = mDBName;
-    }
-
-    public String getmDBPath() {
-        return mDBPath;
-    }
-
-    public void setmDBPath(String mDBPath) {
-        this.mDBPath = mDBPath;
-    }
-
-    //endregion
-
     public SqliteManager(String _dbPath, String _tableName, String _uniqueField, Class<T> _entityClass) {
         this.mDBPath = _dbPath;
         this.mTableName = _tableName;

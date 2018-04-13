@@ -4,7 +4,6 @@ import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -20,7 +19,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,8 +33,8 @@ import java.io.IOException;
 import java.util.Date;
 
 import cn.jdz.glib.R;
-import cn.jdz.glib.location.AndroidLocation;
-import cn.jdz.glib.location.ILocation;
+import cn.jdz.glib.sensor.location.AndroidLocation;
+import cn.jdz.glib.sensor.location.ILocation;
 import cn.jdz.glib.sensor.ISensor;
 import cn.jdz.glib.sensor.OrientationSensor;
 import cn.jdz.glib.utils.ImgHelper;
@@ -226,6 +224,8 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
                         Toast.makeText(CaptureActivity.this, "保存在："+imageFile.getPath(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent();
                         intent.putExtra(MediaStore.EXTRA_OUTPUT,imageFile.getPath());
+                        intent.putExtra(CaptureActivity.LOCATION,mCurrentLocation);
+                        intent.putExtra(CaptureActivity.ORIENTATION,mCurrentOrientation);
                         setResult(Activity.RESULT_OK,intent);
                         finish();
                     }
@@ -294,7 +294,7 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
             return;
         }
         if(mLocationStatus == CaptureConfigStatus.REQUEST) {
-            Location l = mLocation.getLocation();
+            Location l = (Location)mLocation.getValues();
             if(l==null){
                 Toast.makeText(this, "正在定位...", Toast.LENGTH_SHORT).show();
                 if(mAnimator !=null)
@@ -305,7 +305,7 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
             mCurrentLocation =l;
         }
         else if(mLocationStatus == CaptureConfigStatus.OPTIONAL) {
-            Location l = mLocation.getLocation();
+            Location l = (Location)mLocation.getValues();
             if(l==null && !isPositioning){
                 Toast.makeText(this, "正在定位,若不需坐标信息，可再次点击拍照...", Toast.LENGTH_LONG).show();
                 if(mAnimator !=null)
@@ -324,7 +324,7 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
             mCurrentLocation =l;
         }
         if(mOrientationStatus == CaptureConfigStatus.REQUEST){
-            float[] o = mSensor.getValues();
+            float[] o = (float[])mSensor.getValues();
             if(o == null && mOrientationStatus == CaptureConfigStatus.REQUEST){
                 Toast.makeText(this, "正在获取传感器参数...", Toast.LENGTH_SHORT).show();
                 return;

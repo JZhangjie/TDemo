@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityCompat;
 
 /**
  * Created by admin on 2017/10/9.
- * sdk23 之后权限获取实例
+ * sdk23 之后权限获取示例
  */
 
 public class PermissionHelper {

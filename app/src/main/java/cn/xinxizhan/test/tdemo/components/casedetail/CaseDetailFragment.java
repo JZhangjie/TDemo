@@ -1,6 +1,7 @@
 package cn.xinxizhan.test.tdemo.components.casedetail;
 
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -73,7 +74,7 @@ public class CaseDetailFragment extends Fragment implements CaseDetailContract.V
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAPTURESUCCESS) {
+        if (requestCode == CAPTURESUCCESS && resultCode == Activity.RESULT_OK) {
             mPresenter.addImage(tempImageFile);
         }
     }
@@ -207,7 +208,7 @@ public class CaseDetailFragment extends Fragment implements CaseDetailContract.V
         //使用自定义的相机
         Intent intent = new Intent(getActivity(), CaptureActivity.class);
         intent.putExtra(MediaStore.EXTRA_OUTPUT,this.tempImageFile);
-        intent.putExtra(CaptureActivity.LOCATION, CaptureConfigStatus.REQUEST);
+        intent.putExtra(CaptureActivity.LOCATION, CaptureConfigStatus.NONE);
         intent.putExtra(CaptureActivity.ORIENTATION, CaptureConfigStatus.REQUEST);
         startActivityForResult(intent, CAPTURESUCCESS);
     }

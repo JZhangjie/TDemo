@@ -1,14 +1,11 @@
-package cn.jdz.glib.location;
+package cn.jdz.glib.sensor.location;
 
 import android.Manifest;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
@@ -35,7 +32,7 @@ public class AndroidLocation implements ILocation {
     }
 
     @Override
-    public Location getLocation() {
+    public Object getValues() {
         return mLocation;
     }
 
@@ -60,6 +57,16 @@ public class AndroidLocation implements ILocation {
         if(mLocatonManager != null){
             mLocatonManager.removeUpdates(mLocationListener);
             mLocation = null;
+        }
+    }
+
+    @Override
+    public void setConfig(long mind, long mint, String provider) {
+        mMinDistance = mind;
+        mMinTime = mint;
+        if(provider != null)
+        {
+            mProvider = provider;
         }
     }
 

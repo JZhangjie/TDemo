@@ -71,7 +71,8 @@ public class ExcelManager<T> implements IDBManager<T> {
         }
     }
 
-    public boolean createExcel() {
+    @Override
+    public boolean create() {
         if (mFields == null || mFields.size() == 0) {
             throw new RuntimeException("为初始化字段列表！");
         }
@@ -82,15 +83,17 @@ public class ExcelManager<T> implements IDBManager<T> {
         try {
             wwb = getWritableWorkbook(mExcelFile);
             WritableSheet ws = getWritableSheet(wwb, mTableName);
-            int rn = mHeaderLineNum - 1;
-            ws.mergeCells(0, 0, mFields.size() - 1, rn - 1);
-            ws.addCell(new Label(0, 0, mTitle));
-            for (int i = 0; i < mFields.size(); i++) {
-                DBField dbField = mFields.get(i);
-                Label header = new Label(i, rn, dbField.getFieldName());
-                ws.addCell(header);
+            if(mHeaderLineNum > 1){
+                int rn = mHeaderLineNum - 1;
+                ws.mergeCells(0, 0, mFields.size() - 1, rn - 1);
+                ws.addCell(new Label(0, 0, mTitle));
+                for (int i = 0; i < mFields.size(); i++) {
+                    DBField dbField = mFields.get(i);
+                    Label header = new Label(i, rn, dbField.getFieldName());
+                    ws.addCell(header);
+                }
+                wwb.write();
             }
-            wwb.write();
             wwb.close();
             return true;
         } catch (IOException e) {
@@ -102,11 +105,6 @@ public class ExcelManager<T> implements IDBManager<T> {
         } catch (WriteException e) {
             e.printStackTrace();
         }
-        return false;
-    }
-
-    @Override
-    public boolean create() {
         return false;
     }
 
@@ -141,7 +139,39 @@ public class ExcelManager<T> implements IDBManager<T> {
     }
 
     @Override
-    public boolean update(T t) {
+    public boolean update(T m) {
+        if (mFields == null || mFields.size() == 0) {
+            throw new RuntimeException("为初始化字段列表！");
+        }
+        if(!mDatas.contains(m)){
+            throw new RuntimeException("当前实体不在文件中！");
+        }
+        int r = mDatas.indexOf(m);
+        WritableWorkbook wwb = null;
+        try {
+            wwb = getWritableWorkbook(mExcelFile);
+            WritableSheet ws = getWritableSheet(wwb, mTableName);
+            int rn = ws.getRows();
+            int uprow = r+mHeaderLineNum;
+            if (uprow > rn) {
+                throw new RuntimeException("更新数据时出错！");
+            }
+            for (int i = 0; i < mFields.size(); i++) {
+                DBField dbField = mFields.get(i);
+                ws.addCell(getValueFromModel(i, uprow, dbField, m));
+            }
+            wwb.write();
+            wwb.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (BiffException e) {
+            e.printStackTrace();
+        } catch (RowsExceededException e) {
+            e.printStackTrace();
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -200,7 +230,6 @@ public class ExcelManager<T> implements IDBManager<T> {
             Sheet s = workbook.getSheet(mTableName);
             if(s!=null){
                 int temprownum = s.getRows();
-                int tempcolnum = s.getColumns();
                 //检查表结构
                 for(int i=0;i<mFields.size();i++){
                     DBField dbField = mFields.get(i);

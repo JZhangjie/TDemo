@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <FrameLayout
+        android:background="#FFEEEEEE"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp">
+            <ImageView
+                android:id="@+id/item_expandcontainer_title_img"
+                android:layout_gravity="center"
+                android:src="@drawable/expand_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+        <TextView
+            android:id="@+id/item_expandcontainer_title_text"
+            android:text="标题"
+            android:layout_marginLeft="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/item_expandcontainer_title_btn"
+            android:src="@drawable/expand_more"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_gravity="center"
+                android:background="#FF999999"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/item_expandcontainer_content_container"
+            android:minHeight="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

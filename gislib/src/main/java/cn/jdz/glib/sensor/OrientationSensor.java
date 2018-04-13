@@ -27,7 +27,7 @@ public class OrientationSensor implements ISensor {
     }
 
     @Override
-    public float[] getValues() {
+    public Object getValues() {
         return mOrientation;
     }
 
@@ -39,7 +39,7 @@ public class OrientationSensor implements ISensor {
     @Override
     public void start() {
         if (mSensorManager != null) {
-            mSensorManager.registerListener(mSensorEventListener,mSensor, SensorManager.SENSOR_DELAY_GAME);
+            mSensorManager.registerListener(mSensorEventListener,mSensor, SensorManager.SENSOR_DELAY_UI);
         }
     }
 

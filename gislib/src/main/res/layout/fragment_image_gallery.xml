@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.jdz.glib.capture.ImageShowActivity">
-    <ImageView
-        android:id="@+id/image_show_image"
+    tools:context="cn.jdz.glib.controls.imagegallery.ImageGalleryFragment">
+    <Gallery
+        android:id="@+id/fragment_imagegallery_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"></Gallery>
+
 </FrameLayout>
